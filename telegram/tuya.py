@@ -13,18 +13,17 @@ class TuyaDevice:
 class ContactSensor(TuyaDevice):
     def __init__(self, device_id):
         super().__init__(device_id)
-        self.status = self.read_status()
+        self.cached_status = self.read_status()
 
     def read_status(self):
         status = cloud.getstatus(self.device_id)
         return status['result'][0]['value']
 
     def has_change_status(self):
-        current_status = self.status
         read_status = self.read_status()
 
-        if(current_status != read_status):
-            self.status = read_status
+        if(self.cached_status != read_status):
+            self.cached_status = read_status
             return True
         
         return False

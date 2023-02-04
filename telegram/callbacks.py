@@ -13,8 +13,5 @@ def watchman_callback(context: CallbackContext):
             except:
                 if(os.path.isfile(video_name)):
                     os.remove(video_name)
-            finally:
-                if(os.path.isfile(video_name)):
-                    os.remove(video_name)
         else:
             context.bot.send_message(chat_id=context.job.context.allowed_chat, text="The door has been closed \U0001F6AA\U00002705")
