@@ -14,7 +14,7 @@ class Stream:
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         writer = cv2.VideoWriter(video_name, fourcc, 20.0, (width,height))
 
         timeout = time.time() + seconds_to_record
