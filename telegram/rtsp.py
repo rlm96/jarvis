@@ -3,13 +3,13 @@ import time
 import os
 from datetime import datetime
 
-base_address = "rtsp://{user}:{password}@{ip}/{path}"
+base_address = "rtsp://{user}:{password}@{ip}/{url_path}"
 video_extension = '.mp4'
 video_base_path = 'media'
 
 class Stream:
-    def __init__(self, ip, user, password, path):
-        self.url_address = base_address.format(ip=ip, user=user, password=password, path=path)
+    def __init__(self, ip, user, password, url_path):
+        self.url_address = base_address.format(ip=ip, user=user, password=password, url_path=url_path)
         if not os.path.exists(video_base_path):
             os.makedirs(video_base_path)
 
