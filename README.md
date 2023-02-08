@@ -13,7 +13,7 @@ Over time, he was upgraded into an artificially intelligent system, tasked with 
 
 ### Telegram bot (~/telegram)
 
-Code related to a Telegram bot developed using [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot). 
+Telegram bot developed using [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot). 
 
 - Home watchman. Send door contact sensor information (door opened and closed) using Tuya Cloud ecosystem and videos from an IP camera via RTSP protocol when the sensor notices that the door has been opened.
 
