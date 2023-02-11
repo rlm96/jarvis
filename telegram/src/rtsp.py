@@ -1,7 +1,7 @@
-import cv2
-import time
 import os
+import time
 from datetime import datetime
+import cv2
 
 base_address = "rtsp://{user}:{password}@{ip}/{url_path}"
 video_extension = '.mp4'

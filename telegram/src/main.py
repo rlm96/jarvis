@@ -32,7 +32,7 @@ allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
 
 dispatcher.add_handler(CommandHandler('health', commands.health_command))
 
-watchman_context = contexts.WatchmanContext(allowed_chat, door_sensor, rtsp_stream)
+watchman_context = contexts.WatchmanContext(allowed_chat, door_sensor, os.getenv('CONTACT_SENSOR_TRUE_ON_OPEN'), rtsp_stream)
 updater.job_queue.run_repeating(callbacks.watchman_callback, int(os.getenv('NOTIFICATION_RATE_S')), context=watchman_context)
 
 updater.start_polling()
