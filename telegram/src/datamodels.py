@@ -1,8 +1,8 @@
-class BaseContext:
+class BaseData:
     def __init__(self) -> None:
         pass
 
-class WatchmanContext(BaseContext):
+class WatchmanData(BaseData):
     def __init__(self, allowed_chat, door_sensor, sensor_true_on_open, rtsp_stream):
         self.allowed_chat = allowed_chat
         self.door_sensor = door_sensor

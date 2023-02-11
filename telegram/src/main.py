@@ -6,7 +6,7 @@ import tuya
 import rtsp
 import commands
 import callbacks
-import contexts
+import datamodels
 
 logging.basicConfig(
     level = logging.INFO, format = "%(asctime)s %(message)s"
@@ -25,15 +25,13 @@ door_sensor = tuya.ContactSensor(device_id=door_contact_sensor_device_id)
 
 rtsp_stream = rtsp.Stream(os.getenv('CAMERA_IP'), os.getenv('RTSP_USER'), os.getenv('RTSP_PASSWORD'), os.getenv('RTSP_PATH'))
 
-updater = Updater(os.getenv('BOT_API_KEY'), use_context=True)
-dispatcher = updater.dispatcher
+application = Application.builder().token(os.getenv('BOT_API_KEY')).build()
 
 allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
 
-dispatcher.add_handler(CommandHandler('health', commands.health_command))
+application.add_handler(CommandHandler('health', commands.health_command))
 
-watchman_context = contexts.WatchmanContext(allowed_chat, door_sensor, os.getenv('CONTACT_SENSOR_TRUE_ON_OPEN'), rtsp_stream)
-updater.job_queue.run_repeating(callbacks.watchman_callback, int(os.getenv('NOTIFICATION_RATE_S')), context=watchman_context)
+watchman_context = datamodels.WatchmanData(allowed_chat, door_sensor, os.getenv('CONTACT_SENSOR_TRUE_ON_OPEN'), rtsp_stream)
+application.job_queue.run_repeating(callbacks.watchman_callback, int(os.getenv('NOTIFICATION_RATE_S')), data=watchman_context)
 
-updater.start_polling()
-updater.idle()
+application.run_polling()
