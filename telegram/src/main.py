@@ -31,7 +31,7 @@ allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
 
 application.add_handler(CommandHandler('health', commands.health_command))
 
-watchman_context = datamodels.WatchmanData(allowed_chat, door_sensor, os.getenv('CONTACT_SENSOR_TRUE_ON_OPEN'), rtsp_stream)
-application.job_queue.run_repeating(callbacks.watchman_callback, int(os.getenv('NOTIFICATION_RATE_S')), data=watchman_context)
+watchman_data = datamodels.WatchmanData(allowed_chat, door_sensor, os.getenv('CONTACT_SENSOR_TRUE_ON_OPEN'), rtsp_stream)
+application.job_queue.run_repeating(callbacks.watchman_callback, int(os.getenv('NOTIFICATION_RATE_S')), data=watchman_data)
 
 application.run_polling()
