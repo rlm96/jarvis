@@ -1,6 +1,4 @@
-class BaseData:
-    def __init__(self) -> None:
-        pass
+from .base import *
 
 class WatchmanData(BaseData):
     def __init__(self, allowed_chat, door_sensor, sensor_true_on_open, rtsp_stream):

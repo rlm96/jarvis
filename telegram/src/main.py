@@ -6,7 +6,7 @@ import tuya
 import rtsp
 import commands
 import callbacks
-import datamodels
+import callbacks.datamodels as datamodels
 
 logging.basicConfig(
     level = logging.INFO, format = "%(asctime)s %(message)s"
