@@ -14,4 +14,4 @@ async def watchman_callback(context: CallbackContext):
                 if(os.path.isfile(video.path)):
                     os.remove(video.path)
         else:
-            await context.bot.send_message(chat_id=context.job.context.allowed_chat, text="The door has been closed \U0001F6AA\U00002705")
+            await context.bot.send_message(chat_id=context.job.data.allowed_chat, text="The door has been closed \U0001F6AA\U00002705")
