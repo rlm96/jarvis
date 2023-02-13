@@ -9,7 +9,7 @@ import callbacks
 import callbacks.datamodels as datamodels
 
 logging.basicConfig(
-    level = logging.INFO, format = "%(asctime)s %(message)s"
+    level = logging.ERROR, format = "%(asctime)s %(message)s"
 )
 logger = logging.getLogger()
 

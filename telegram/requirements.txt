@@ -1,4 +1,3 @@
 python-telegram-bot[all]
 python-dotenv
 tinytuya
-opencv-python

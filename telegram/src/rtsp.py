@@ -19,7 +19,7 @@ class Stream:
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        fourcc = cv2.VideoWriter_fourcc(*'h264')
+        fourcc = cv2.VideoWriter_fourcc(*'avc1')
         video_name = datetime.now().strftime("%d-%B-%Y %Hh%Mm%Ss") + video_extension
         full_video_path = os.path.join(video_base_path, video_name)
         writer = cv2.VideoWriter(full_video_path, fourcc, 20.0, (width, height))

@@ -1,11 +1,13 @@
-FROM python:3.9.6
-
-RUN pip install --upgrade pip\
-    && mkdir \app
+FROM continuumio/anaconda3
 
 # install cv2 dependencies
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y
 
+RUN conda update --all
+RUN conda install pip
+RUN conda install -c conda-forge opencv
+
+RUN mkdir \app
 ADD src /app
 ADD requirements.txt /app
 ADD .env /app
