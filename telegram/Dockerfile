@@ -1,4 +1,6 @@
-FROM continuumio/miniconda3
+FROM condaforge/miniforge3
+
+ARG DEBIAN_FRONTEND=noninteractive
 
 # install cv2 dependencies
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y
