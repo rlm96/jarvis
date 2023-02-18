@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3
+FROM continuumio/miniconda3
 
 # install cv2 dependencies
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y
