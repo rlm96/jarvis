@@ -15,8 +15,10 @@ Over time, he was upgraded into an artificially intelligent system, tasked with 
 
 Telegram bot developed using [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot). Rename ``.env-template`` file to ``.env`` and configure all parameters used in ``main.py``.
 
-Functionalities:
+### Watchman (~/watchman)
 
-- Home watchman. Send door contact sensor information (door opened and closed) using Tuya Cloud ecosystem and videos from an IP camera via RTSP protocol when the sensor notices that the door has been opened.
+Send door contact sensor information via Telegram from recorded UDP packages. The sensor is a WiFi low-power (Tuya) sensor, so it will send UDP broadcast packages (UDP port 6667) when notices a change (open or close).
+
+The watchman also send videos from an IP camera capturing the images via RTSP protocol when the sensor notices an event. Rename ``.env-template`` file to ``.env`` and configure all parameters used in ``main.py``.
 
 ### Energy saver (~/energy-saver)
