@@ -27,7 +27,6 @@ allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((udp_ip, udp_port))
-sock.connect(sensor_ip)
 
 def drain_socket():
     """Drain/empty any pending incoming data present in the socket"""
