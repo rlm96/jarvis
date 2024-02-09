@@ -1,5 +1,5 @@
 # M.O.N.T.E.R.O's J.A.R.V.I.S.
-My Own Naughty Telegram-Engineered Robot Operator aka J.A.R.V.I.S.
+My Own Notable Telegram-Engineered Robot Operator aka J.A.R.V.I.S.
 
 This repository contains all parts involved in the automation of my day to day tasks. You will find here code related to domotics and automation using primarily Python and C#. Feel free to use it if you need :wave:
 
