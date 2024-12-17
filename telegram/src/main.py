@@ -1,4 +1,5 @@
 import os
+import sys
 from telegram.ext import *
 from dotenv import load_dotenv
 import logging
@@ -6,6 +7,18 @@ import commands
 import callbacks
 import callbacks.datamodels as datamodels
 import asyncio
+
+current_path = os.path.dirname(os.path.abspath(__file__))
+project_path = os.path.dirname(os.path.dirname(current_path))
+shared_path = os.path.join(project_path, "shared")
+
+if shared_path not in sys.path:
+    sys.path.append(shared_path)
+
+import translator
+
+translator_singleton = translator.TranslatorSingleton(file_path='resources/translations.json')
+language = os.getenv('DEFAULT_LANGUAGE')
 
 logging.basicConfig(
     level = logging.ERROR, format = "%(asctime)s %(message)s"
@@ -16,13 +29,14 @@ load_dotenv()
 
 application = Application.builder().token(os.getenv('BOT_API_KEY')).build()
 
-allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
+allowed_chats = [int(x) for x in os.getenv('ALLOWED_CHATS_IDS').split(';')]
 
 application.add_handler(CommandHandler('health', commands.health_command))
 
 async def initialize_async():
-    await application.bot.send_message(chat_id=allowed_chat, 
-        text="J.A.R.V.I.S. has been potentially rebooted. Check if everything is working as expected and devices (e.g., WiFi plugs and sensors) are in the required state (on/off)")
+    for allowed_chat in allowed_chats:
+        await application.bot.send_message(chat_id=allowed_chat, 
+            text=translator_singleton.translate(language, 'greet'))
 
 if __name__ == '__main__':
     # run initialize_async() in the "background"

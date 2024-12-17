@@ -1,0 +1,10 @@
+{
+    "en": {
+      "greet": "J.A.R.V.I.S. has been potentially rebooted. Check if everything is working as expected and devices (e.g., WiFi plugs and sensors) are in the required state (on/off)",
+      "alive": "Alive"
+    },
+    "es": {
+      "greet": "J.A.R.V.I.S. ha sido potencialmente reiniciado. Comprueba que todo funciona correctamente y que los dispositivos (por ejemplo, enchufes WiFi y sensores) están en el estado preciso (on/off)",
+      "alive": "Vivo"
+    }
+  }

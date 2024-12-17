@@ -1,4 +1,5 @@
 import os
+import sys
 from telegram.ext import *
 from dotenv import load_dotenv
 import logging
@@ -6,6 +7,18 @@ import socket
 import rtsp
 import asyncio
 import select
+
+current_path = os.path.dirname(os.path.abspath(__file__))
+project_path = os.path.dirname(os.path.dirname(current_path))
+shared_path = os.path.join(project_path, "shared")
+
+if shared_path not in sys.path:
+    sys.path.append(shared_path)
+
+import translator
+
+translator_singleton = translator.TranslatorSingleton(file_path='resources/translations.json')
+language = os.getenv('DEFAULT_LANGUAGE')
 
 logging.basicConfig(
     level = logging.ERROR, format = "%(asctime)s %(message)s"
@@ -23,7 +36,7 @@ rtsp_stream = rtsp.Stream(os.getenv('CAMERA_IP'), os.getenv('RTSP_USER'), os.get
 
 application = Application.builder().token(os.getenv('BOT_API_KEY')).build()
 
-allowed_chat = int(os.getenv('ALLOWED_CHAT_ID'))
+allowed_chats = [int(x) for x in os.getenv('ALLOWED_CHATS_IDS').split(';')]
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((udp_ip, udp_port))
@@ -39,8 +52,9 @@ def drain_socket():
 async def process_event_async():
     try:
         video = rtsp_stream.record_video(10)
-        await application.bot.send_message(chat_id=allowed_chat, text="The door sensor has recorded a new event \U0001F6AA\U0001F6A8")
-        await application.bot.send_video(chat_id=allowed_chat, video=open(video.path, 'rb'), supports_streaming=True, width=video.width, height=video.height)
+        for allowed_chat in allowed_chats:
+            await application.bot.send_message(chat_id=allowed_chat, text=translator_singleton.translate(language, 'event'))
+            await application.bot.send_video(chat_id=allowed_chat, video=open(video.path, 'rb'), supports_streaming=True, width=video.width, height=video.height)
         if(os.path.isfile(video.path)):
             os.remove(video.path)
     except:
