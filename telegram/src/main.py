@@ -4,8 +4,6 @@ from telegram.ext import *
 from dotenv import load_dotenv
 import logging
 import commands
-import callbacks
-import callbacks.datamodels as datamodels
 import asyncio
 
 current_path = os.path.dirname(os.path.abspath(__file__))
@@ -31,7 +29,7 @@ application = Application.builder().token(os.getenv('BOT_API_KEY')).build()
 
 allowed_chats = [int(x) for x in os.getenv('ALLOWED_CHATS_IDS').split(';')]
 
-application.add_handler(CommandHandler('health', commands.health_command))
+application.add_handler(CommandHandler('health', lambda update, context: commands.health_command(update, context, translator_singleton.translate(language, 'alive'))))
 
 async def initialize_async():
     for allowed_chat in allowed_chats:
