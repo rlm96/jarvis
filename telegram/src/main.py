@@ -1,19 +1,17 @@
 import os
-import sys
 from telegram.ext import *
 from dotenv import load_dotenv
 import logging
 import commands
 import asyncio
 
-current_path = os.path.dirname(os.path.abspath(__file__))
-project_path = os.path.dirname(os.path.dirname(current_path))
-shared_path = os.path.join(project_path, "shared")
-
-if shared_path not in sys.path:
-    sys.path.append(shared_path)
+if __debug__:
+    import sys
+    sys.path.append(os.path.abspath("../jarvis/shared"))
 
 import translator
+
+load_dotenv()
 
 translator_singleton = translator.TranslatorSingleton(file_path='resources/translations.json')
 language = os.getenv('DEFAULT_LANGUAGE')
@@ -22,8 +20,6 @@ logging.basicConfig(
     level = logging.ERROR, format = "%(asctime)s %(message)s"
 )
 logger = logging.getLogger()
-
-load_dotenv()
 
 application = Application.builder().token(os.getenv('BOT_API_KEY')).build()
 

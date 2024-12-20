@@ -1,9 +1,10 @@
 FROM python:latest
 
 RUN mkdir \app
-ADD src /app
-ADD requirements.txt /app
-ADD .env /app
+COPY telegram/src /app
+COPY telegram/requirements.txt /app
+COPY telegram/.env /app
+COPY /shared /app
 WORKDIR /app
 
 RUN pip install -r requirements.txt

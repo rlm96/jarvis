@@ -10,9 +10,10 @@ RUN conda install pip
 RUN conda install -c conda-forge opencv
 
 RUN mkdir \app
-ADD src /app
-ADD requirements.txt /app
-ADD .env /app
+COPY watchman/src /app
+COPY watchman/requirements.txt /app
+COPY watchman/.env /app
+COPY /shared /app
 WORKDIR /app
 
 RUN pip install -r requirements.txt
