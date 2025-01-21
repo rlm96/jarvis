@@ -12,7 +12,6 @@ RUN conda install -c conda-forge opencv
 RUN mkdir \app
 COPY watchman/src /app
 COPY watchman/requirements.txt /app
-COPY watchman/.env /app
 COPY /shared /app
 WORKDIR /app
 

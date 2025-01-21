@@ -3,7 +3,6 @@ FROM python:latest
 RUN mkdir \app
 COPY telegram/src /app
 COPY telegram/requirements.txt /app
-COPY telegram/.env /app
 COPY /shared /app
 WORKDIR /app
 
