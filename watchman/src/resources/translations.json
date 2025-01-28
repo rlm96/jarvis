@@ -1,8 +1,8 @@
 {
     "en": {
-      "event": "The door sensor has recorded a new event \U0001F6AA\U0001F6A8"
+      "event": "The door sensor has recorded a new event \\U0001F6AA\\U0001F6A8"
     },
     "es": {
-      "event": "El sensor ha registrado un nuevo evento \U0001F6AA\U0001F6A8"
+      "event": "El sensor ha registrado un nuevo evento \\U0001F6AA\\U0001F6A8"
     }
   }
