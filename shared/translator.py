@@ -20,4 +20,4 @@ class TranslatorSingleton:
     def translate(self, language, key):
         if not language or language not in self._translations:
             language = 'en'
-        return self._translations.get(language, self._translations['en']).get(key, key)
+        return self._translations.get(language, self._translations['en']).get(key, key).encode().decode("unicode_escape")
