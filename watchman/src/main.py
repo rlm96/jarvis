@@ -7,15 +7,18 @@ import rtsp
 import asyncio
 import select
 
+resources_file_path = 'resources/translations.json'
+
 if __debug__:
     import sys
     sys.path.append(os.path.abspath("../jarvis/shared"))
+    resources_file_path = 'watchman/src/resources/translations.json'
 
 import translator
 
 load_dotenv()
 
-translator_singleton = translator.TranslatorSingleton(file_path='resources/translations.json')
+translator_singleton = translator.TranslatorSingleton(file_path=resources_file_path)
 language = os.getenv('DEFAULT_LANGUAGE')
 
 logging.basicConfig(
