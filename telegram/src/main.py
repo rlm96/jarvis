@@ -10,7 +10,7 @@ resources_file_path = 'resources/translations.json'
 if __debug__:
     import sys
     sys.path.append(os.path.abspath("../jarvis/shared"))
-    resources_file_path = 'telegram/src/resources/translations.json'
+    # resources_file_path = 'telegram/src/resources/translations.json'
 
 import translator
 
